@@ -6,15 +6,6 @@
     margin: 10px;
 }
 
-.title{
-    padding: 15px 5px 0;
-}
-
-.title h1{
-    font-size: 2rem;
-    font-weight: bold;
-}
-
 .button-group{
     display: flex;
     flex-direction: row;
@@ -27,4 +18,14 @@
 
 .button-group button.active {
     color:#ff4081;
+}
+
+.title{
+    margin: 20px;
+    text-align: center;
+}
+
+.title h1{
+    font-size: 2rem;
+    font-weight: bold;
 }

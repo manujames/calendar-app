@@ -6,7 +6,7 @@
       type="text"
       name="title"
       #title="ngModel"
-      [(ngModel)]="event.title"
+      [(ngModel)]="eventData.title"
       placeholder="Enter event title*"
       required
       matInput
@@ -21,7 +21,7 @@
       type="date"
       name="date"
       #date="ngModel"
-      [(ngModel)]="event.date"
+      [(ngModel)]="eventData.date"
       required
       matInput
     />
@@ -35,7 +35,7 @@
       type="time"
       name="time"
       #time="ngModel"
-      [(ngModel)]="event.time"
+      [(ngModel)]="eventData.time"
       required
       matInput
     />

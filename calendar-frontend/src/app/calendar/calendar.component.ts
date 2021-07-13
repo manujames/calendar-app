@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { CalendarEvent, CalendarView } from 'angular-calendar';
+import { startOfDay } from 'date-fns';
 import { AddEventDialogComponent } from '../add-event-dialog/add-event-dialog.component';
+import { ContentService } from '../content.service';
 
 @Component({
   selector: 'app-calendar',
@@ -19,33 +21,51 @@ export class CalendarComponent implements OnInit {
 
   addEvent(datetime: any) {
     // yyyy-MM-dd format
-    let date = `${datetime.getFullYear()}` + 
+    let date =
+      `${datetime.getFullYear()}` +
       `-${('0' + (datetime.getMonth() + 1)).slice(-2)}` +
       `-${('0' + datetime.getDate()).slice(-2)}`;
-    
+
     // hh:mm format
-    let time = `${('0' + datetime.getHours()).slice(-2)}:${('0' + datetime.getMinutes()).slice(-2)}`
+    let time = `${('0' + datetime.getHours()).slice(-2)}:${(
+      '0' + datetime.getMinutes()
+    ).slice(-2)}`;
 
     const dialogRef = this.dialog.open(AddEventDialogComponent, {
-      data: { 
+      data: {
         date: date,
-        time: time
+        time: time,
       },
     });
     dialogRef.afterClosed().subscribe((data) => {
-      if (data.event == 'add' || data.event == '404') {
+      if (data && (data.event == 'add' || data.event == '404')) {
         this.loadEvents();
       }
     });
   }
 
   loadEvents() {
-
+    this.content.getEvents().subscribe((receivedEvents: any) => {
+      let eventArray: { start: Date; title: any; }[] = [];
+      receivedEvents.map((e: any) => {
+        let eventObj = {
+          start: new Date(`${e.date}:${e.time}`),
+          title: e.title,
+        };
+        eventArray.push(eventObj);
+      });
+      this.events = eventArray;
+    });
   }
 
   events: CalendarEvent[] = [];
+  //   {
+  //     start: startOfDay(new Date()),
+  //     title: 'An event with no end date',
+  //   },
+  // ];
 
-  constructor(private dialog: MatDialog) {}
+  constructor(private dialog: MatDialog, private content: ContentService) {}
 
   ngOnInit(): void {
     this.loadEvents();
