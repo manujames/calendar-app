@@ -1,0 +1,30 @@
+.controls{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    align-items: center;
+    margin: 10px;
+}
+
+.title{
+    padding: 15px 5px 0;
+}
+
+.title h1{
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.button-group{
+    display: flex;
+    flex-direction: row;
+}
+
+.button-group button{
+    margin: 1px;
+    min-width: 100px;
+}
+
+.button-group button.active {
+    color:#ff4081;
+}

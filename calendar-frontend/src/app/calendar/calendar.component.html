@@ -1,0 +1,72 @@
+<div class="controls">
+  <div class="button-group">
+    <div mwlCalendarPreviousView [view]="view" [(viewDate)]="viewDate">
+      <button mat-raised-button color="primary">Previous</button>
+    </div>
+    <div mwlCalendarToday [(viewDate)]="viewDate">
+      <button mat-raised-button color="accent">Today</button>
+    </div>
+    <div mwlCalendarNextView [view]="view" [(viewDate)]="viewDate">
+      <button mat-raised-button color="primary">Next</button>
+    </div>
+  </div>
+  <div class="title">
+    <h1>{{ viewDate | calendarDate: view + "ViewTitle":"en" }}</h1>
+  </div>
+  <div class="button-group">
+    <div>
+      <button
+        mat-raised-button
+        (click)="setView(CalendarView.Month)"
+        [class.active]="view === CalendarView.Month"
+      >
+        Month
+      </button>
+    </div>
+    <div>
+      <button
+        mat-raised-button
+        (click)="setView(CalendarView.Week)"
+        [class.active]="view === CalendarView.Week"
+      >
+        Week
+      </button>
+    </div>
+    <div>
+      <button
+        mat-raised-button
+        (click)="setView(CalendarView.Day)"
+        [class.active]="view === CalendarView.Day"
+      >
+        Day
+      </button>
+    </div>
+  </div>
+</div>
+
+<div [ngSwitch]="view">
+  <mwl-calendar-month-view
+    *ngSwitchCase="CalendarView.Month"
+    [viewDate]="viewDate"
+    [events]="events"
+    (dayClicked)="addEvent($event.day.date)"
+  >
+  </mwl-calendar-month-view>
+
+  <mwl-calendar-week-view
+    *ngSwitchCase="CalendarView.Week"
+    [viewDate]="viewDate"
+    [events]="events"
+    (dayHeaderClicked)="addEvent($event.day.date)"
+    (hourSegmentClicked)="addEvent($event.date)"
+  >
+  </mwl-calendar-week-view>
+
+  <mwl-calendar-day-view
+    *ngSwitchCase="CalendarView.Day"
+    [viewDate]="viewDate"
+    [events]="events"
+    (hourSegmentClicked)="addEvent($event.date)"
+  >
+  </mwl-calendar-day-view>
+</div>

@@ -1,0 +1,15 @@
+.full-width {
+  width: 100%;
+}
+
+.event-form {
+  min-width: 250px;
+  max-width: 500px;
+  width: 100%;
+}
+
+.event-form button {
+  margin: 4px;
+  min-width: 100px;
+  float: right;
+}

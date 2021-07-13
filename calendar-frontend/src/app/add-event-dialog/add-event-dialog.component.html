@@ -1,0 +1,48 @@
+<form #eventForm="ngForm" (submit)="addEvent(eventForm.form)" class="event-form">
+  <h1>Add Event</h1>
+  <mat-form-field class="full-width" appearance="fill">
+    <mat-label>Title</mat-label>
+    <input
+      type="text"
+      name="title"
+      #title="ngModel"
+      [(ngModel)]="event.title"
+      placeholder="Enter event title*"
+      required
+      matInput
+    />
+    <mat-error *ngIf="title.invalid && title.touched">
+      Event title can not be blank
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field class="full-width" appearance="fill">
+    <mat-label>Date</mat-label>
+    <input
+      type="date"
+      name="date"
+      #date="ngModel"
+      [(ngModel)]="event.date"
+      required
+      matInput
+    />
+    <mat-error *ngIf="date.invalid && date.touched">
+      Enter a valid date
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field class="full-width" appearance="fill">
+    <mat-label>Time</mat-label>
+    <input
+      type="time"
+      name="time"
+      #time="ngModel"
+      [(ngModel)]="event.time"
+      required
+      matInput
+    />
+    <mat-error *ngIf="time.invalid && time.touched">
+      Enter a valid time
+    </mat-error>
+  </mat-form-field>
+  <button mat-raised-button color="accent">Save</button>
+  <button mat-raised-button mat-dialog-close color="primary">Cancel</button>
+</form>
