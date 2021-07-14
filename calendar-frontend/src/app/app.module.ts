@@ -23,12 +23,16 @@ import { CalendarComponent } from './calendar/calendar.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AddEventDialogComponent } from './add-event-dialog/add-event-dialog.component';
 
+import { KeyValuePipe, KeyValuePipeReversed } from './dashboard/key-value.pipe';
+
 @NgModule({
   declarations: [
     AppComponent,
     CalendarComponent,
     DashboardComponent,
     AddEventDialogComponent,
+    KeyValuePipe,
+    KeyValuePipeReversed,
   ],
   imports: [
     BrowserModule,

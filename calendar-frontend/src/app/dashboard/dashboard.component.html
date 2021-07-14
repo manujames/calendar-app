@@ -1,1 +1,114 @@
-<p>dashboard works!</p>
+<div class="dashboard-wrapper">
+  <div class="title">
+    <h1>Event Dashboard</h1>
+  </div>
+  <mat-card class="today-card">
+    <mat-card-header>
+      <div mat-card-avatar><mat-icon>today</mat-icon></div>
+      <mat-card-title>Today's Events</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <p *ngIf="todaysEvents.length===0">No events for today!</p>
+      <mat-card class="event-card" *ngFor="let event of todaysEvents">
+        <mat-form-field class="full-width">
+          <mat-label>Time</mat-label>
+          <input disabled type="time" matInput value="{{ event.time }}" />
+        </mat-form-field>
+        <mat-card-title>{{ event.title }}</mat-card-title>
+        <mat-card-actions class="actions">
+          <button mat-mini-fab color="accent" aria-label="Edit event button">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button
+            mat-mini-fab
+            color="warn"
+            aria-label="Delete event button"
+            (click)="deleteEvent(event._id)"
+          >
+            <mat-icon>delete</mat-icon>
+          </button>
+        </mat-card-actions>
+      </mat-card>
+    </mat-card-content>
+  </mat-card>
+
+  <div class="card-row">
+    <mat-card class="card">
+      <mat-card-header>
+        <div mat-card-avatar><mat-icon>event</mat-icon></div>
+        <mat-card-title>Upcoming Events</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <mat-card class="event-card" *ngFor="let date of futureEvents | keyValueUnsorted trackBy: trackByIndex">
+          <mat-form-field class="full-width">
+            <mat-label>Date</mat-label>
+            <input disabled type="date" matInput value="{{ date.key }}" />
+          </mat-form-field>
+          <mat-card-content *ngFor="let event of date.value">
+            <mat-form-field class="full-width">
+              <mat-label>Time</mat-label>
+              <input disabled type="time" matInput value="{{ event.time }}" />
+            </mat-form-field>
+            <mat-card-title>{{ event.title }}</mat-card-title>
+            <mat-card-actions class="actions">
+              <button
+                mat-mini-fab
+                color="accent"
+                aria-label="Edit event button"
+              >
+                <mat-icon>edit</mat-icon>
+              </button>
+              <button
+                mat-mini-fab
+                color="warn"
+                aria-label="Delete event button"
+                (click)="deleteEvent(event._id)"
+              >
+                <mat-icon>delete</mat-icon>
+              </button>
+            </mat-card-actions>
+          </mat-card-content>
+        </mat-card>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card class="card">
+      <mat-card-header>
+        <div mat-card-avatar><mat-icon>event</mat-icon></div>
+        <mat-card-title>Past Events</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <mat-card class="event-card" *ngFor="let date of pastEvents | keyValueUnsorted trackBy: trackByIndex">
+          <mat-form-field class="full-width">
+            <mat-label>Date</mat-label>
+            <input disabled type="date" matInput value="{{ date.key }}" />
+          </mat-form-field>
+          <mat-card-content *ngFor="let event of date.value">
+            <mat-form-field class="full-width">
+              <mat-label>Time</mat-label>
+              <input disabled type="time" matInput value="{{ event.time }}" />
+            </mat-form-field>
+            <mat-card-title>{{ event.title }}</mat-card-title>
+            <mat-card-actions class="actions">
+              <button
+                mat-mini-fab
+                color="accent"
+                aria-label="Edit event button"
+              >
+                <mat-icon>edit</mat-icon>
+              </button>
+              <button
+                mat-mini-fab
+                color="warn"
+                aria-label="Delete event button"
+                (click)="deleteEvent(event._id)"
+              >
+                <mat-icon>delete</mat-icon>
+              </button>
+            </mat-card-actions>
+          </mat-card-content>
+        </mat-card>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

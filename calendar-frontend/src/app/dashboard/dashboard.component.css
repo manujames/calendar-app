@@ -1,0 +1,56 @@
+.dashboard-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 20px 10px;
+}
+
+.title{
+  align-self: center;
+  text-align: center;
+  margin: 10px;
+}
+
+.title h1{
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.today-card {
+  align-self: center;
+  width: 50%;
+  max-width: 600px;
+  min-width: 300px;
+  margin: 10px;
+}
+
+.card-row{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.card {
+  width: 40%;
+  max-width: 600px;
+  min-width: 300px;
+  margin: 10px;
+}
+
+.event-card {
+  margin: 5px;
+}
+
+.event-card .actions{
+  display: flex;
+  justify-content: flex-end;
+}
+
+.event-card button{
+  margin: 5px;
+}
+
+.full-width {
+  width: 100%;
+}

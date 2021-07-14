@@ -16,4 +16,8 @@ export class ContentService {
   addEvent(event:any){
     return this.http.post<any>(`${this.api}/events`,event);
   }
+
+  deleteEvent(id:any){
+    return this.http.delete(`${this.api}/events/delete/${id}`);
+  }
 }
